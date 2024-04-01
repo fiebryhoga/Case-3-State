@@ -13,11 +13,11 @@ Ini adalah sistem login sederhana yang diimplementasikan menggunakan PHP, HTML, 
     ```bash
     cd C:/xampp/htdocs
     ```
-3. Clone repository ke dalam folder bernama cookie:
+3. Clone repository ke dalam htdocs:
     ```bash
     git clone https://github.com/fiebryhoga/Case-3-State.git cookie
     ```
-   Ganti your-username dengan username GitHub Anda.
+   
 
 ## Penggunaan
 
