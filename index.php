@@ -178,7 +178,7 @@
             color: #d1d1d1;
             letter-spacing: 0.4px;
             font-size: 12px;
-
+            border: none;
             opacity: 0.8;
             font-weight: 500;
 
@@ -235,15 +235,21 @@
             cursor: pointer;
         }
 
-        #error {
-            position: absolute;
-            color: red;
+        .error-message {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
             font-size: 12px;
-            font-weight: 500;
-            font-family: sans-serif;
-            transform: translateY(120px);
-            letter-spacing: 1px;
-            opacity: 0.8;
+            border: 1px solid red;
+            color: red;
+            padding: 20px;
+            letter-spacing: 0.6px;
+            border-radius: 6px;
+            color: white;
+            z-index: 999;
+            display: none;
         }
     </style>
 </head>
@@ -300,39 +306,65 @@
                     Login
                 </button>
 
-                <div id="error"></div>
             </form>
 
 
         </div>
+
     </section>
+                    <div id="errorPopup" class="error-message"></div>
+
+
 
 
 <script>
-$(document).ready(function(){
-    $('#loginForm').submit(function(event){
-        event.preventDefault();
-        var email = $('#email').val();
-        var password = $('#password').val();
-        var remember = $('#remember').is(':checked');
-
-        $.ajax({
-            type: 'POST',
-            url: 'login.php',
-            data: {email: email, password: password, remember: remember},
-            success: function(response){
-                if(response.trim() == 'success'){
-                    window.location.href = 'profile.php';
-                } else {
-                    $('#error').text(response);
-                    $('#email').val(''); // Clear input fields on error
-                    $('#password').val('');
-                }
+    $(document).ready(function(){
+        $('#loginForm').submit(function(event){
+            event.preventDefault(); 
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var remember = $('#remember').is(':checked');
+            if (!isValidEmail(email)) {
+                showError('Invalid email address.');
+                return;
             }
-        });
-    });
-});
-</script>
+            if (!isValidPassword(password)) {
+                showError('Invalid password.');
+                return;
+            }
 
+            // AJAX login
+            $.ajax({
+                type: 'POST',
+                url: 'login.php',
+                data: {email: email, password: password, remember: remember},
+                success: function(response){
+                    if(response.trim() == 'success'){
+                        window.location.href = 'profile.php';
+                    } else {
+                        showError(response);
+                    }
+                }
+            });
+        });
+
+        function isValidEmail(email) {
+            return /\S+@\S+\.\S+/.test(email);
+        }
+
+        function isValidPassword(password) {
+            return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+        }
+
+        function showError(message) {
+            var errorPopup = document.getElementById('errorPopup');
+            errorPopup.textContent = message;
+            errorPopup.style.display = 'block';
+            setTimeout(function(){ errorPopup.style.display = 'none'; }, 3000); // Hide after 3 seconds
+        }
+
+
+    });
+    </script>
 </body>
 </html>
