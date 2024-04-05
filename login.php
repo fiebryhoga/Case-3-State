@@ -15,7 +15,6 @@ if ($userEmail == $email && $userPassword == $password) {
         setcookie('email', $email, time() + (86400 * 30), "/");
     }
 
-    echo "success";
 } else {
-    echo "Email or password incorrect.";
+    echo "Email or password incorrect";
 }

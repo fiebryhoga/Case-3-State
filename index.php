@@ -242,7 +242,6 @@
             transform: translate(-50%, -50%);
             background-color: gray;
             font-size: 14px;
-            /* border: 1px solid red; */
             color: red;
             font-weight: 500;
             padding: 18px;
@@ -300,7 +299,7 @@
                         <input type="password" name="password" id="password" placeholder="Password" class="input" required>
                     </label>
 
-                                        <label class="remember"><input type="checkbox" name="remember" id="remember"/>Remember Me</label>
+                    <label class="remember"><input type="checkbox" name="remember" id="remember"/>Remember Me</label>
 
                 </div>
 
@@ -314,7 +313,7 @@
         </div>
 
     </section>
-                    <div id="errorPopup" class="error-message"></div>
+    <div id="errorPopup" class="error-message"></div>
 
 
 
@@ -327,11 +326,11 @@
             var password = $('#password').val();
             var remember = $('#remember').is(':checked');
             if (!isValidEmail(email)) {
-                showError('Invalid email address.');
+                showError('Invalid email address');
                 return;
             }
             if (!isValidPassword(password)) {
-                showError('Invalid password.');
+                showError('Invalid password');
                 return;
             }
 
@@ -362,7 +361,7 @@
             var errorPopup = document.getElementById('errorPopup');
             errorPopup.textContent = message;
             errorPopup.style.display = 'flex';
-            setTimeout(function(){ errorPopup.style.display = 'none'; }, 3000); // Hide after 3 seconds
+            setTimeout(function(){ errorPopup.style.display = 'none'; }, 3000);
         }
 
 
