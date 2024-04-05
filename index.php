@@ -240,16 +240,18 @@
             top: 10%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: transparent;
-            font-size: 12px;
-            border: 1px solid red;
+            background-color: gray;
+            font-size: 14px;
+            /* border: 1px solid red; */
             color: red;
-            padding: 20px;
+            font-weight: 500;
+            padding: 18px;
             letter-spacing: 0.6px;
             border-radius: 6px;
             color: white;
             z-index: 999;
             display: none;
+            font-family: sans-serif;
         }
     </style>
 </head>
@@ -320,7 +322,7 @@
 <script>
     $(document).ready(function(){
         $('#loginForm').submit(function(event){
-            event.preventDefault(); 
+            event.preventDefault();
             var email = $('#email').val();
             var password = $('#password').val();
             var remember = $('#remember').is(':checked');
@@ -359,7 +361,7 @@
         function showError(message) {
             var errorPopup = document.getElementById('errorPopup');
             errorPopup.textContent = message;
-            errorPopup.style.display = 'block';
+            errorPopup.style.display = 'flex';
             setTimeout(function(){ errorPopup.style.display = 'none'; }, 3000); // Hide after 3 seconds
         }
 

@@ -17,5 +17,5 @@ if ($userEmail == $email && $userPassword == $password) {
 
     echo "success";
 } else {
-    echo "Email and/or password incorrect.";
+    echo "Email or password incorrect.";
 }
